@@ -1,15 +1,32 @@
 package com.chitterchallenge.server.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.cglib.core.Local;
 import org.springframework.data.annotation.Id;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Peep {
     @Id private String id;
 
+    @NotNull
+    @NotEmpty
     private String username;
+
+    @NotNull
+    @NotEmpty
     private String name;
-    private Date dateCreated;
+
+    @NotNull
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    private LocalDateTime dateCreated;
+
+    @NotNull
+    @NotEmpty
+    private String peep;
 
     public String getUsername() {
         return username;
@@ -27,11 +44,11 @@ public class Peep {
         this.name = name;
     }
 
-    public Date getDateCreated() {
+    public LocalDateTime getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(LocalDateTime dateCreated) {
         this.dateCreated = dateCreated;
     }
 
@@ -42,6 +59,4 @@ public class Peep {
     public void setPeep(String peep) {
         this.peep = peep;
     }
-
-    private String peep;
 }

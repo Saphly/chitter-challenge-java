@@ -1,14 +1,26 @@
 package com.chitterchallenge.server.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 
 public class User {
     @Id private String id;
 
+    @NotNull
+    @NotEmpty
     private String email;
+
+    @NotNull
+    @NotEmpty
     private String username;
+
+    @NotNull
+    @NotEmpty
     private String password;
+
+    @NotNull
+    @NotEmpty
     private String name;
 
     public String getEmail() {

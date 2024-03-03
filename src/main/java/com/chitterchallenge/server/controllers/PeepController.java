@@ -2,6 +2,7 @@ package com.chitterchallenge.server.controllers;
 
 import com.chitterchallenge.server.model.Peep;
 import com.chitterchallenge.server.services.PeepServices;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -27,7 +28,7 @@ public class PeepController {
 
     @PostMapping(value = "/post")
     @ResponseStatus(HttpStatus.CREATED)
-    public Peep addPeep(@RequestBody Peep peep){
+    public Peep addPeep(@Valid @RequestBody Peep peep){
         return peepServices.addPeep(peep);
     }
 }

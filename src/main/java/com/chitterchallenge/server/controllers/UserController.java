@@ -7,6 +7,7 @@ import com.chitterchallenge.server.exceptions.UsernameTakenException;
 import com.chitterchallenge.server.mappers.UserMapper;
 import com.chitterchallenge.server.model.User;
 import com.chitterchallenge.server.services.UserServices;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -56,7 +57,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/register")
-    public ResponseEntity<UserDto> userRegister(@RequestBody User input) {
+    public ResponseEntity<UserDto> userRegister(@Valid @RequestBody User input) {
         if(existsByEmail(input.getEmail())) {
             throw new UserEmailRegisteredException();
         }
