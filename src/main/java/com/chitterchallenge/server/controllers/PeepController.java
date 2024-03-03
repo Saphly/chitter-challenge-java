@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("peep")
 @Validated
 public class PeepController {
     private final PeepServices peepServices;
@@ -19,12 +20,12 @@ public class PeepController {
         this.peepServices = peepServices;
     }
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "/all")
     public List<Peep> getAllPeeps() {
         return peepServices.getAllPeeps();
     }
 
-    @PostMapping(value = "/add-peep")
+    @PostMapping(value = "/post")
     @ResponseStatus(HttpStatus.CREATED)
     public Peep addPeep(@RequestBody Peep peep){
         return peepServices.addPeep(peep);

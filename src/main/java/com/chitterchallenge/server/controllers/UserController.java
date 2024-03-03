@@ -68,6 +68,7 @@ public class UserController {
         User user = userServices.registerUser(input);
 
         UserDto userDto = UserMapper.convertEntityToDto(user);
+        userDto.setMessage("Register success");
         return ResponseEntity.ok().body(userDto);
     }
 }
