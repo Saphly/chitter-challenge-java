@@ -3,12 +3,12 @@ package com.chitterchallenge.server.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.cglib.core.Local;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
+@Document(collection = "peeps")
 public class Peep {
     @Id private String id;
 
@@ -27,6 +27,10 @@ public class Peep {
     @NotNull
     @NotEmpty
     private String peep;
+
+    public String getId() {
+        return id;
+    }
 
     public String getUsername() {
         return username;

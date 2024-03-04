@@ -1,0 +1,16 @@
+[
+  {
+    "id": "65e6456c52a8ff36e2a8e83b",
+    "username": "JD",
+    "name": "John Doe",
+    "dateCreated": "2024-03-04T22:04:28.674Z",
+    "peep": "2nd peeeeep"
+  },
+  {
+    "id": "65e6455052a8ff36e2a8e83a",
+    "username": "JD",
+    "name": "John Doe",
+    "dateCreated": "2024-03-04T22:04:00.675Z",
+    "peep": "first peep!"
+  }
+]
