@@ -13,9 +13,9 @@ public class ServerApplication {
 		SpringApplication.run(ServerApplication.class, args);
 	}
 
-
 	//https://spring.io/guides/gs/rest-service-cors#global-cors-configuration
-	//https://stackoverflow.com/questions/32319396/cors-with-spring-boot-and-angularjs-not-working
+	// Global cors configuration to allow requests from all endpoints
+	// Bean is sort of like an object that Spring manages and Spring will handle the initialization of the object.
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {

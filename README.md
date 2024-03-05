@@ -11,11 +11,11 @@ This version would be the JRM stack (sadly not as catchy :( as MERN).
 
 ### Requirements
 
+- Sign up
+- Log in
 - Post a message (peep)
 - See all peeps in reverse chronological order
 - See the time at which it was made
-- Sign up
-- Log in
 
 ### Developed With
 

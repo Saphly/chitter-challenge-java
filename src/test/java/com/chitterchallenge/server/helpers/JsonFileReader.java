@@ -12,6 +12,7 @@ import java.util.List;
 public class JsonFileReader {
 
     public static List<Peep> peepJsonFileToObjectList() {
+        // This is to register the dependency that is needed for mapping
         ObjectMapper objectMapper = JsonMapper.builder().findAndAddModules().build();
 
         try {
