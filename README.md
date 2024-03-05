@@ -1,24 +1,32 @@
-Chitter Challenge
-=================
-Challenge:
--------
-
-We are going to write a small twitter clone that will allow users to post messages to a public wall.
-
-Good luck and let the chitter begin!
+Chitter Challenge (Spring Boot Edition)
+=======================================
 
 ### About The Project
 
-This Chitter project is my version of a Twitter/X clone. Users can view peeps without logging in, you can register as a new user, and you can post peeps using your account.
+The Chitter Challenge is a project that was done on the final 2 weeks of the academy. The task 
+was to create a full stack application, which is essentially a clone of Twitter/X, using the MERN stack 
+&mdash; MongoDB, Express.js, React, Node.js.
+
+This version would be the JRM stack (sadly not as catchy :( as MERN).
+
+### Requirements
+
+- Post a message (peep)
+- See all peeps in reverse chronological order
+- See the time at which it was made
+- Sign up
+- Log in
 
 ### Developed With
 
 This project is developed using the following frameworks and libraries:
 
 <ul>
-    <li><a href="https://spring.io/projects/spring-boot">Spring Boot </a></li>
+    <li><a href="https://www.java.com/en/download/help/whatis_java.html">Java 17</a></li>
+    <li><a href="https://spring.io/projects/spring-boot">Spring Boot 3.2.3</a></li>
     <li><a href="https://www.mongodb.com/">MongoDB </a></li>
-    <li><a href="https://mongoosejs.com/">Mongoose.js </a></li>
+    <li><a href="https://junit.org/junit5/">JUnit</a></li>
+    <li><a href="https://maven.apache.org/">Maven</a></li>
 </ul>
 
 ## Getting Started
@@ -32,19 +40,17 @@ brew services start mongodb-community
 
 ### Get the code
 
+As the project is split into repo (backend and frontend), 
+you will have to clone two repos.\
+
+For the Spring Boot backend:
 ```
-git clone https://github.com/Saphly/chitter-challenge.git
+git clone https://github.com/Saphly/chitter-challenge-java
 ```
 
-As the project is split into two folders (back-end and front-end), you will have to go into each folder and run them locally on separate terminals.
-
-
-### Back-end
-
-If you are in the root directory of this project, run
+For the frontend:
 ```
-cd chitterBackEnd && npm i
-npm run start
+git clone https://github.com/Saphly/chitter-challenge-mirrored 
 ```
 
 ### Front-end
@@ -54,6 +60,10 @@ If you are in the root directory of this project, run
 cd chitterFrontEnd && npm i
 npm run dev
 ```
+
+### Back-end
+
+Run ServerApplication from your preferred Java IDE. 
 
 ### Using the app
 
@@ -67,42 +77,91 @@ As you will be starting off with a completely empty project, you can follow thes
     <li>Post some peeps!</li>
 </ol>
 
+### API Endpoints
 
-Features:
--------
-
-### Standard Acceptance Criteria
+`GET` `/peep/all`\
+Get all peeps in reverse chronological order. E.g.
 ```
-As a trainee software engineer
-So that I can let people know what I am doing  
-I want to post a message (peep) to chitter
-
-As a trainee
-So that I can see what others are saying  
-I want to see all peeps in reverse chronological order
-
-As a trainee
-So that I can better appreciate the context of a peep
-I want to see the time at which it was made
-
-As a trainee
-So that I can post messages on Chitter as me
-I want to sign up for Chitter
-
-As a trainee
-So that only I can post messages on Chitter as me
-I want to log in to Chitter
-
-As a trainee
-So that I can avoid others posting messages on Chitter as me
-I want to log out of Chitter
+[
+    {
+        "id": "65e6455052a8ff36e2a8e83a",
+        "username": "JD",
+        "name": "John Doe",
+        "dateCreated": "2024-03-04T22:04:00.675Z",
+        "peep": "first peep!"
+    }
+]
 ```
 
-Additional requirements:
-------
+`POST` `/peep/post`\
+```
+JSON request body
+{
+    "username": "JD",
+    "name": "John Doe",
+    "dateCreated": "2024-03-05T15:20:27.371Z",
+    "peep": "3rd peep"
+}
 
-* You don't have to be logged in to see the peeps.
-* Trainee software engineers sign up to chitter with their email, password, name and a username (e.g. ewright@digitalfutures.com, password123, Ed Wright, edwright6975).
-* The username and email are unique.
-* Peeps (posts to chitter) have the name of the trainee and their user handle.
-* Your README should indicate the technologies used, and give instructions on how to install and run the tests.
+API return
+{
+    "id": "65e7383bb37db834eaae2ca8",
+    "username": "JD",
+    "name": "John Doe",
+    "dateCreated": "2024-03-05T15:20:27.371Z",
+    "peep": "3rd peep"
+}
+```
+
+`POST` `/user/login`\
+```
+JSON request body
+{
+    "email": "john@example.com",
+    "password": "asd"
+}
+
+API return 
+{
+    "message": "Login success",
+    "user": {
+        "name": "John Doe",
+        "username": "JD"
+    }
+}
+```
+
+`POST` `/user/register`\
+```
+JSON request body
+{
+    "name": "John Doe",
+    "username": "JD",
+    "password": "asd",
+    "email": "john@example.com"
+}
+
+API return
+{
+    "message": "Register success",
+    "user": {
+        "name": "John Doe",
+        "username": "JD2"
+    }
+}
+
+```
+
+## Reflection: 
+Even though this is just a simple backend server, I have actually spent a good amount of time on this, and it 
+was a great learning experience. As I had little experience in `Java` and `Spring Boot`, as well as using a
+new IDE `IntelliJ IDEA`, it was a steep learning curve for me and there is much to improve on for my coding 
+practices in Jaya. 
+
+There are a few features/improvements that I would like to work on:
+- Implement JSON Web Token (JWT) for security 
+- Unit tests in addition to the integration tests
+- Update and delete peep functionality
+- Better way of creating JSON request body for tests 
+
+![Code coverage generated by Spring Boot](code_coverage.png)
