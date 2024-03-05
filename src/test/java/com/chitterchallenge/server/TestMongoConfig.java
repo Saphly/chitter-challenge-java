@@ -1,6 +1,7 @@
 package com.chitterchallenge.server;
 
 import com.chitterchallenge.server.model.Peep;
+import com.chitterchallenge.server.model.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -11,8 +12,6 @@ import java.util.List;
 
 @Configuration
 public class TestMongoConfig {
-    private static final String collectionName = "peeps";
-
     @Bean
     public static MongoTemplate mongoTemplate() {
         return new MongoTemplate(new SimpleMongoClientDatabaseFactory(
@@ -20,14 +19,20 @@ public class TestMongoConfig {
         ));
     }
 
-    public static void clearCollection() {
-        System.out.println("Deleting existing peeps");
+    public static void clearCollection(String collectionName) {
+        System.out.println("Deleting existing " + collectionName);
         mongoTemplate().remove(new Query(), collectionName);
     }
 
-    public static void repopulateCollection(List<Peep> peeps) {
+    public static void repopulatePeepsCollection(List<Peep> peeps) {
         System.out.println("Creating peeps");
         System.out.println("Inserting peeps");
-        mongoTemplate().insert(peeps, collectionName);
+        mongoTemplate().insert(peeps, "peeps");
+    }
+
+    public static void repopulateUsersCollection(List<User> users) {
+        System.out.println("Creating users");
+        System.out.println("Inserting users");
+        mongoTemplate().insert(users, "users");
     }
 }

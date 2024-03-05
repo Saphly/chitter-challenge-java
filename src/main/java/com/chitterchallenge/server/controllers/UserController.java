@@ -34,7 +34,7 @@ public class UserController {
         return userServices.existsByEmail(email);
     }
 
-    public User findByEmail(String email) {
+    private User findByEmail(String email) {
         try {
             return userServices.findByEmail(email);
         } catch (NoSuchElementException err) {

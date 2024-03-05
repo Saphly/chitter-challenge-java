@@ -5,14 +5,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.List;
 
@@ -27,7 +24,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@RunWith(SpringRunner.class)
 class PeepControllerTests {
 
 	@Autowired
@@ -39,7 +35,7 @@ class PeepControllerTests {
 
 	@BeforeEach
 	void clearCollection() {
-		TestMongoConfig.clearCollection();
+		TestMongoConfig.clearCollection("peeps");
 	}
 
 	@Nested
@@ -64,7 +60,7 @@ class PeepControllerTests {
 	class WhenPeepsFound {
 		@BeforeEach
 		void repopulateCollection() {
-			TestMongoConfig.repopulateCollection(peeps);
+			TestMongoConfig.repopulatePeepsCollection(peeps);
 		}
 
 		@Test
@@ -81,8 +77,6 @@ class PeepControllerTests {
 					.perform(get("/peep/all"))
 					.andDo(print())
 					.andExpect(jsonPath("$[*].dateCreated", contains("2024-03-04T22:04:28.674Z", "2024-03-04T22:04:00.675Z")));
-
-
 		}
 	}
 
