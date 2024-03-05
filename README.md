@@ -80,7 +80,7 @@ As you will be starting off with a completely empty project, you can follow thes
 ### API Endpoints
 
 `GET` `/peep/all`\
-Get all peeps in reverse chronological order. E.g.
+Get all peeps in reverse chronological order. 
 ```
 [
     {
@@ -93,7 +93,7 @@ Get all peeps in reverse chronological order. E.g.
 ]
 ```
 
-`POST` `/peep/post`\
+`POST` `/peep/post` 
 ```
 JSON request body
 {
@@ -113,7 +113,7 @@ API return
 }
 ```
 
-`POST` `/user/login`\
+`POST` `/user/login`
 ```
 JSON request body
 {
@@ -131,7 +131,7 @@ API return
 }
 ```
 
-`POST` `/user/register`\
+`POST` `/user/register`
 ```
 JSON request body
 {
