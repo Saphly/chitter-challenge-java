@@ -4,6 +4,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "users")
@@ -13,10 +14,12 @@ public class User {
     @NotNull
     @NotEmpty
     @Email
+    @Indexed(unique = true)
     private String email;
 
     @NotNull
     @NotEmpty
+    @Indexed(unique = true)
     private String username;
 
     @NotNull

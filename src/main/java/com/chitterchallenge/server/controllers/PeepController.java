@@ -1,7 +1,7 @@
 package com.chitterchallenge.server.controllers;
 
 import com.chitterchallenge.server.model.Peep;
-import com.chitterchallenge.server.services.PeepServices;
+import com.chitterchallenge.server.services.PeepService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,21 +14,21 @@ import java.util.List;
 @RequestMapping("peep")
 @Validated
 public class PeepController {
-    private final PeepServices peepServices;
+    private final PeepService peepService;
 
     @Autowired
-    public PeepController(PeepServices peepServices) {
-        this.peepServices = peepServices;
+    public PeepController(PeepService peepServices) {
+        this.peepService = peepServices;
     }
 
     @GetMapping(value = "/all")
     public List<Peep> getAllPeeps() {
-        return peepServices.getAllPeeps();
+        return peepService.getAllPeeps();
     }
 
     @PostMapping(value = "/post")
     @ResponseStatus(HttpStatus.CREATED)
     public Peep addPeep(@Valid @RequestBody Peep peep){
-        return peepServices.addPeep(peep);
+        return peepService.addPeep(peep);
     }
 }

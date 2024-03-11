@@ -6,16 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
 import java.util.List;
 
 @Service
-public class PeepServices {
+public class PeepService {
     @Autowired
     private PeepRepository peepRepository;
 
     public List<Peep> getAllPeeps() {
-        return peepRepository.findAll(Sort.by(Sort.Direction.DESC, "dateCreated"));
+//        return peepRepository.findAll(Sort.by(Sort.Direction.DESC, "dateCreated"));
+        return peepRepository.findAllByOrderByDateCreatedDesc();
     }
 
     public Peep addPeep(Peep peep) {

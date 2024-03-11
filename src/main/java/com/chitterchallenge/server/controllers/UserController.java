@@ -6,37 +6,36 @@ import com.chitterchallenge.server.exceptions.UserEmailRegisteredException;
 import com.chitterchallenge.server.exceptions.UsernameTakenException;
 import com.chitterchallenge.server.mappers.UserMapper;
 import com.chitterchallenge.server.model.User;
-import com.chitterchallenge.server.services.UserServices;
+import com.chitterchallenge.server.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
 @RestController
 @RequestMapping("user")
 public class UserController {
-    private final UserServices userServices;
+    private final UserService userService;
 
     @Autowired
-    public UserController(UserServices userServices) {
-        this.userServices = userServices;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     private Boolean existsByUsername(String username) {
-       return userServices.existsByUsername(username);
+       return userService.existsByUsername(username);
     }
 
     private Boolean existsByEmail(String email) {
-        return userServices.existsByEmail(email);
+        return userService.existsByEmail(email);
     }
 
     private User findByEmail(String email) {
         try {
-            return userServices.findByEmail(email);
+            return userService.findByEmail(email);
         } catch (NoSuchElementException err) {
             throw new IncorrectDetailsException();
         }
@@ -66,7 +65,7 @@ public class UserController {
             throw new UsernameTakenException();
         }
 
-        User user = userServices.registerUser(input);
+        User user = userService.registerUser(input);
 
         UserDto userDto = UserMapper.convertEntityToDto(user);
         userDto.setMessage("Register success");
