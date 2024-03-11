@@ -9,14 +9,6 @@ was to create a full stack application, which is essentially a clone of Twitter/
 
 This version would be the JRM stack (sadly not as catchy :( as MERN).
 
-### Requirements
-
-- Sign up
-- Log in
-- Post a message (peep)
-- See all peeps in reverse chronological order
-- See the time at which it was made
-
 ### Developed With
 
 This project is developed using the following frameworks and libraries:
@@ -28,6 +20,14 @@ This project is developed using the following frameworks and libraries:
     <li><a href="https://junit.org/junit5/">JUnit</a></li>
     <li><a href="https://maven.apache.org/">Maven</a></li>
 </ul>
+
+### Requirements
+
+- Sign up
+- Log in
+- Post a message (peep)
+- See all peeps in reverse chronological order
+- See the time at which it was made
 
 ## Getting Started
 
