@@ -1,5 +1,6 @@
-package com.chitterchallenge.server;
+package com.chitterchallenge.server.controllers;
 
+import com.chitterchallenge.server.TestMongoConfig;
 import com.chitterchallenge.server.model.Peep;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

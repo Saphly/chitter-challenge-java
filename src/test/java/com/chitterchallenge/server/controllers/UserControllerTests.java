@@ -1,5 +1,6 @@
-package com.chitterchallenge.server;
+package com.chitterchallenge.server.controllers;
 
+import com.chitterchallenge.server.TestMongoConfig;
 import com.chitterchallenge.server.exceptions.IncorrectDetailsException;
 import com.chitterchallenge.server.exceptions.UserEmailRegisteredException;
 import com.chitterchallenge.server.exceptions.UsernameTakenException;
