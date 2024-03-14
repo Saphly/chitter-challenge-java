@@ -1,9 +1,8 @@
 package com.chitterchallenge.server.services;
 
-import com.chitterchallenge.server.model.Peep;
+import com.chitterchallenge.server.models.Peep;
 import com.chitterchallenge.server.repositories.PeepRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

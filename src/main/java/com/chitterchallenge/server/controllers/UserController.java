@@ -5,8 +5,8 @@ import com.chitterchallenge.server.exceptions.IncorrectDetailsException;
 import com.chitterchallenge.server.exceptions.UserEmailRegisteredException;
 import com.chitterchallenge.server.exceptions.UsernameTakenException;
 import com.chitterchallenge.server.mappers.UserMapper;
-import com.chitterchallenge.server.model.User;
-import com.chitterchallenge.server.services.UserService;
+import com.chitterchallenge.server.models.User;
+import com.chitterchallenge.server.services.UserServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,24 +18,24 @@ import java.util.Objects;
 @RestController
 @RequestMapping("user")
 public class UserController {
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
 
     @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public UserController(UserServiceImpl userServiceImpl) {
+        this.userServiceImpl = userServiceImpl;
     }
 
     private Boolean existsByUsername(String username) {
-       return userService.existsByUsername(username);
+       return userServiceImpl.existsByUsername(username);
     }
 
     private Boolean existsByEmail(String email) {
-        return userService.existsByEmail(email);
+        return userServiceImpl.existsByEmail(email);
     }
 
     private User findByEmail(String email) {
         try {
-            return userService.findByEmail(email);
+            return userServiceImpl.findByEmail(email);
         } catch (NoSuchElementException err) {
             throw new IncorrectDetailsException();
         }
@@ -65,7 +65,7 @@ public class UserController {
             throw new UsernameTakenException();
         }
 
-        User user = userService.registerUser(input);
+        User user = userServiceImpl.registerUser(input);
 
         UserDto userDto = UserMapper.convertEntityToDto(user);
         userDto.setMessage("Register success");

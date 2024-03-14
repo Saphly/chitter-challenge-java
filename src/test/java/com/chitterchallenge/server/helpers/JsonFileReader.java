@@ -1,7 +1,7 @@
 package com.chitterchallenge.server.helpers;
 
-import com.chitterchallenge.server.model.Peep;
-import com.chitterchallenge.server.model.User;
+import com.chitterchallenge.server.models.Peep;
+import com.chitterchallenge.server.models.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 

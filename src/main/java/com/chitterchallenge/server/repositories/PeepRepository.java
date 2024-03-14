@@ -1,8 +1,7 @@
 package com.chitterchallenge.server.repositories;
 
-import com.chitterchallenge.server.model.Peep;
+import com.chitterchallenge.server.models.Peep;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.chitterchallenge.server.model;
+package com.chitterchallenge.server.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotEmpty;

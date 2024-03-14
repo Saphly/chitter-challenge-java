@@ -1,6 +1,6 @@
 package com.chitterchallenge.server.services;
 
-import com.chitterchallenge.server.model.User;
+import com.chitterchallenge.server.models.User;
 import com.chitterchallenge.server.repositories.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -18,12 +18,12 @@ import static org.mockito.AdditionalAnswers.returnsFirstArg;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-public class UserServiceTests {
+public class UserServiceImplTests {
     @Mock
     UserRepository userRepository;
 
     @InjectMocks
-    UserService userService;
+    UserServiceImpl userServiceImpl;
 
     User newUser;
 
@@ -43,7 +43,7 @@ public class UserServiceTests {
         void shouldReturnUserWithExistingEmail() {
             when(userRepository.findByEmail(newUser.getEmail())).thenReturn(Optional.of(newUser));
 
-            User userResult = userService.findByEmail("john@example.com");
+            User userResult = userServiceImpl.findByEmail("john@example.com");
             assertEquals(userResult.getUsername(), newUser.getUsername());
             assertEquals(userResult.getEmail(), newUser.getEmail());
             assertEquals(userResult.getName(), newUser.getName());
@@ -55,7 +55,7 @@ public class UserServiceTests {
             when(userRepository.findByEmail("")).thenThrow(new NoSuchElementException("User not found"));
 
             Exception exception = assertThrows(NoSuchElementException.class, () -> {
-                userService.findByEmail("");
+                userServiceImpl.findByEmail("");
             });
 
             assertTrue(exception.getMessage().contains("User not found"));
@@ -69,7 +69,7 @@ public class UserServiceTests {
         void shouldReturnValidUserGivenUsername() {
             when(userRepository.findByUsername(newUser.getUsername())).thenReturn(Optional.of(newUser));
 
-            User userResult = userService.findByUsername("JD");
+            User userResult = userServiceImpl.findByUsername("JD");
             assertEquals(userResult.getName(), newUser.getName());
             assertEquals(userResult.getUsername(), newUser.getUsername());
             assertEquals(userResult.getEmail(), newUser.getEmail());
@@ -81,7 +81,7 @@ public class UserServiceTests {
             when(userRepository.findByUsername("nonexistent")).thenThrow(new NoSuchElementException("User not found"));
 
             Exception exception = assertThrows(NoSuchElementException.class, () -> {
-                userService.findByUsername("nonexistent");
+                userServiceImpl.findByUsername("nonexistent");
             });
 
             assertTrue(exception.getMessage().contains("User not found"));
@@ -94,14 +94,14 @@ public class UserServiceTests {
         @DisplayName("should return true if email exists")
         void shouldReturnTrueIfEmailExists() {
             when(userRepository.existsByEmail(newUser.getEmail())).thenReturn(true);
-            assertTrue(userService.existsByEmail(newUser.getEmail()));
+            assertTrue(userServiceImpl.existsByEmail(newUser.getEmail()));
         }
 
         @Test
         @DisplayName("should return false if email does not exist")
         void shouldReturnFalseIfEmailDoesNotExist() {
             when(userRepository.existsByEmail(newUser.getEmail())).thenReturn(false);
-            assertFalse(userService.existsByEmail(newUser.getEmail()));
+            assertFalse(userServiceImpl.existsByEmail(newUser.getEmail()));
         }
     }
 
@@ -111,7 +111,7 @@ public class UserServiceTests {
         @DisplayName("Should return true if username exists")
         void shouldReturnTrueIfUsernameExists() {
             when(userRepository.existsByUsername(newUser.getUsername())).thenReturn(true);
-            assertTrue(userService.existsByUsername(newUser.getUsername()));
+            assertTrue(userServiceImpl.existsByUsername(newUser.getUsername()));
         }
     }
 
@@ -121,7 +121,7 @@ public class UserServiceTests {
         @DisplayName("Should return user details when register is successful")
         void shouldReturnUserWhenRegisterSuccess() {
             when(userRepository.save(any(User.class))).then(returnsFirstArg());
-            User userResult = userService.registerUser(newUser);
+            User userResult = userServiceImpl.registerUser(newUser);
             assertEquals(userResult.getEmail(), newUser.getEmail());
             assertEquals(userResult.getUsername(), newUser.getUsername());
         }

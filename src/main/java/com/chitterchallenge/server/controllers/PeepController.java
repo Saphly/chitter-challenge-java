@@ -1,6 +1,6 @@
 package com.chitterchallenge.server.controllers;
 
-import com.chitterchallenge.server.model.Peep;
+import com.chitterchallenge.server.models.Peep;
 import com.chitterchallenge.server.services.PeepService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

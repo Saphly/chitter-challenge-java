@@ -1,7 +1,7 @@
 package com.chitterchallenge.server;
 
-import com.chitterchallenge.server.model.Peep;
-import com.chitterchallenge.server.model.User;
+import com.chitterchallenge.server.models.Peep;
+import com.chitterchallenge.server.models.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.MongoTemplate;

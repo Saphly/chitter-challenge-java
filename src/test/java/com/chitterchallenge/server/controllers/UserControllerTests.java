@@ -4,7 +4,7 @@ import com.chitterchallenge.server.TestMongoConfig;
 import com.chitterchallenge.server.exceptions.IncorrectDetailsException;
 import com.chitterchallenge.server.exceptions.UserEmailRegisteredException;
 import com.chitterchallenge.server.exceptions.UsernameTakenException;
-import com.chitterchallenge.server.model.User;
+import com.chitterchallenge.server.models.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

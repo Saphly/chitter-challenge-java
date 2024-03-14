@@ -1,6 +1,6 @@
 package com.chitterchallenge.server.services;
 
-import com.chitterchallenge.server.model.Peep;
+import com.chitterchallenge.server.models.Peep;
 import com.chitterchallenge.server.repositories.PeepRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -10,7 +10,6 @@ import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.List;
 
